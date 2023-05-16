@@ -1,185 +1,59 @@
-// Variable- these change value throughout the script
-// let stri = "Hello World!",
-//   int1 = 23,
-//   obj1 = {
-//     firstName: "Alexa",
-//     lastName: "Lopez",
-//     age: 23,
-//     swe: true,
-//   },
-//   arr1 = [1, 2, 3, 4],
-//   bool1 = true;
-
-// console.log(int1);
-// console.log(obj1.lastName);
-
-// obj1.petName = "BobBob";
-
-// console.log(obj1);
-// console.log(obj1.petName);
-
-// PushManager.arr1()
-// let guests = [
-//   {
-//     firstName: "Some",
-//     lastName: "Thing",
-//     species: "Rabbit",
-//   },
-// ];
-// const desserts = [
-//   "Carrot Cake",
-//   "Cheesecake",
-//   "Chocolate Brownie",
-//   "Lemon Tart",
-//   "Strawberry Shortcake",
-// ];
-// const teaCupColors = ["Blue", "Green", "Red", "Yellow", "Purple"];
-// const teaPlateColors = ["Light Blue", "Light Green", "Pink", "Orange", "Gray"];
-// for (let guest of guests) {
-//   const randomIndex = Math.floor(Math.random() * desserts.length);
-//   guest.smallDessert = desserts[randomIndex];
-// }
-// for (let guest of guests) {
-//   const randomCupIndex = Math.floor(Math.random() * teaCupColors.length);
-//   const randomPlateIndex = Math.floor(Math.random() * teaPlateColors.length);
-//   guest.teaCup = true;
-//   guest.teaCupColor = teaCupColors[randomCupIndex];
-//   guest.teaPlate = true;
-//   guest.teaPlateColor = teaPlateColors[randomPlateIndex];
-// }
-// console.log(guests);
-
+// Define the list of guests
 let guests = [
-  {
-    firstName: "Va",
-
-    lastName: "Mouse",
-
-    species: "Human",
-  },
-
-  {
-    firstName: "Toua",
-
-    lastName: "View",
-
-    species: "Human",
-  },
-
-  {
-    firstName: "Faitou",
-
-    lastName: "Lor",
-
-    species: "Human",
-  },
-
-  {
-    firstName: "Jose",
-
-    lastName: "Rublacaba",
-
-    species: "Human",
-  },
-
-  {
-    firstName: "Luciano",
-
-    lastName: "Salinas",
-
-    species: "Human",
-  },
-
-  {
-    firstName: "Marcelis",
-
-    lastName: "Wallace",
-
-    species: "Human",
-  },
-
-  {
-    firstName: "Derris",
-
-    lastName: "Sylvester",
-
-    species: "Human",
-  },
-
-  {
-    firstName: "Milton",
-
-    lastName: "Scott",
-
-    species: "Human",
-  },
-
-  {
-    firstName: "Marisol",
-
-    lastName: "Mercado",
-
-    species: "Human",
-  },
-
-  {
-    firstName: "Michael",
-
-    lastName: "Alfaro",
-
-    species: "Human",
-  },
+  { firstName: "Alice", lastName: "Liddell", species: "Human" },
+  { firstName: "Cheshire", lastName: "Cat", species: "Cat" },
+  { firstName: "Mad", lastName: "Hatter", species: "Human" },
+  { firstName: "White", lastName: "Rabbit", species: "Rabbit" },
+  { firstName: "Queen", lastName: "of Hearts", species: "Human" },
+  { firstName: "Caterpillar", lastName: "Dream", species: "Insect" },
+  { firstName: "Tweedledee", lastName: "Roger", species: "Human" },
+  { firstName: "Tweedledum", lastName: "Roger", species: "Human" },
+  { firstName: "March", lastName: "Hare", species: "Rabbit" },
+  { firstName: "Dormouse", lastName: "Bornous", species: "Rodent" },
 ];
 
-let teaPartyTable = {};
+//Generate random Tea cup/plate color function
+function generateRandomColor() {
+  let colors = ["red", "blue", "green", "light blue", "yellow", "orange"];
 
-for (let i = 0; i < guests.length; i++) {
-  let guest = guests[i];
+  const colorsIndex = Math.floor(Math.random() * 5);
+  const colorsChoice = colors[colorsIndex];
 
-  smallDessertOptions = [
-    "Chocolate Pudding",
-    "Vanilla Ice Cream",
-    "Strawberry Short Cake",
-    "Lemon Cake",
-    "Red Velvet Cake",
-    "Peach Cobbler",
-    "Macadamia Nut Cookie",
-    "Blueberry Muffin",
-    "Tubby Custard",
+  return colorsChoice;
+}
+//console.log(generateRandomColor())
+
+//Generate random dessert function
+function generateRandomDesserts() {
+  let desserts = [
+    "Chocolate Cake",
+    "Apple Pie",
+    "Ice Cream",
+    "Cheesecake",
+    "Brownie",
+    "Strawberry Shortcake",
   ];
 
-  smallDessert =
-    smallDessertOptions[Math.floor(smallDessertOptions.length * Math.random())];
+  const dessertsIndex = Math.floor(Math.random() * 6);
+  const dessertsChoice = desserts[dessertsIndex];
 
-  teaGuest = {};
+  return dessertsChoice;
+}
+//console.log(generateRandomDesserts())
 
-  teaGuest.firstName = guest.firstName;
+// Loop through the first 3 guests only
+for (let i = 0; i < 10; i++) {
+  let guest = guests[i];
 
-  teaGuest.lastName = guest.lastName;
+  // Assign a tea cup and tea plate to the guest
+  guest.teaCup = true;
+  guest.teaCupColor = generateRandomColor(); // Call a function to generate a random color
+  guest.teaPlate = true;
+  guest.teaPlateColor = generateRandomColor(); // Call a function to generate a random color
 
-  teaGuest.species = guest.species;
-
-  teaGuest.teaCup = true;
-
-  teaGuest.teaPlate = true;
-
-  teaGuest.smallDessert = `${smallDessert}`;
-
-  teaPartyTable[guest.firstName] = teaGuest;
+  // Assign a random dessert to the guest
+  guest.smallDessert = generateRandomDesserts(); // Call a function to generate a random dessert
 }
 
-for (let guest in teaPartyTable) {
-  console.log(`First Name: ${teaPartyTable[guest].firstName}`);
-
-  console.log(`Last Name: ${teaPartyTable[guest].lastName}`);
-
-  console.log(`Species: ${teaPartyTable[guest].species}`);
-
-  console.log(`Tea Cup: ${teaPartyTable[guest].teaCup}`);
-
-  console.log(`Tea Plate: ${teaPartyTable[guest].teaPlate}`);
-
-  console.log(`Small Dessert: ${teaPartyTable[guest].smallDessert}`);
-
-  console.log();
-}
+// Print the updated guest objects
+console.log(guests);
